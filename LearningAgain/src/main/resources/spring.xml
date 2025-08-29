@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id="alien" class="com.Harsh.Alien" scope="prototype">-->
+
+        <!-- Setter Injection -->
+    <bean id="alien" class="com.Harsh.Alien" autowire="byType">
+<!--in case of singleton scope which is by default the object is created every time&ndash;&gt;-->
+<!--after changing scope from singleton to prototype the bean will not be able to create object every time it will make object only if we say get bean&ndash;&gt;-->
+<!--        <property name="age" value="21"/>-->
+<!--        <property name="lap" ref="lap1"/>-->
+<!--the ref name is same as the bean created by the Laptop bean, we can see the name of the id in laptop bean is same as in ref&ndash;&gt;-->
+
+        <property name="age" value ="21"/>
+        <property name="com">
+        <!--inner bean-->
+            <bean id="com1" class="com.Harsh.Laptop" primary="true"></bean>
+        </property>
+        <!--due to explicit mention of the ref it will not follow the autowiring -->
+    </bean>
+
+        <!-- Constructor Injection-->
+<!--    <bean id="alien" class="com.Harsh.Alien">-->
+<!--        <constructor-arg type="com.Harsh.Laptop" ref="lap1"/>-->
+<!--        <constructor-arg type="int" value = "21"/>-->
+
+<!--        <constructor-arg index="1" ref="lap1"/>-->
+<!--        <constructor-arg index="0" value = "21"/>-->
+
+<!--        <constructor-arg name="age" value = "21"/>-->
+<!--        <constructor-arg name="lap" ref="lap1"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="com1" class="com.Harsh.Laptop" primary="true"></bean>-->
+
+
+<!--    <bean class="com.Harsh.Desktop" lazy-init="true"></bean>-->
+</beans>

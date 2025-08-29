@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- ➡️the number of time we will create bean the number of time it will get called   -->
+<!--    <bean id="alien1" class="com.Harsh.Alien" scope="prototype">-->
+<!--    </bean>-->
+<!-- by default the scope is singleton where it gets loaded in memory in the moment of loading the application-->
+<!-- whereas if we change the scope to prototype then it will get loaded only if the getBean is called-->
+
+<!--    <bean id="alien2" class="com.Harsh.Alien">-->
+<!--    </bean>-->
+
+    <!--Setter Injection-->
+<!--    <bean id="alien1" class="com.Harsh.Alien">-->
+<!--        <property name="age" value="21"></property>-->
+<!--        <property name="lap" ref="lap1"></property>-->
+    <!--to assign the value we can use value and for the reference we can use ref;>
+    but we have to keep in mind that we should have the reference created already-->
+    <!--whatever id we mention in ref that will be considered only;-->
+    <!--the above one is also a type of setter injection but with ref attribute-->
+<!--    </bean>-->
+
+    <!--Constructor Injection-->
+    <bean id="alien1" class="com.Harsh.Alien" autowire="byType">
+<!--       <constructor-arg value="21"/>-->
+<!--       <constructor-arg ref="lap1"/>-->
+
+<!--        <constructor-arg type="com.Harsh.Laptop" ref="lap1"/>-->
+<!--        <constructor-arg type="int" value="21"/>-->
+
+
+<!--        <constructor-arg index="1" ref="lap1"/>-->
+<!--        <constructor-arg index="0" value="21"/>-->
+            <!--in above example we don't have to follow the sequence of variable we just have to define the type or index number of variable-->
+            <!--and the ideal solution to use the index one-->
+
+            <!--in this we have to follow the sequence of the variable declared-->
+<!--            <constructor-arg name="lap" ref="lap1"/>-->
+<!--            <constructor-arg name="age" value="21"/>-->
+<!--We can use "@ConstructorProperties" to assign the value also by using this we don't have to follow the sequence -->
+
+        <property name="age" value="21"/>
+        <property name="com">
+<!--this is an example of inner bean means it can be access only in this block-->
+<!--only access by the alien not by the outside-->
+            <bean id="com1" class="com.Harsh.Laptop" primary="true">
+            </bean>
+        </property>
+<!--by explicitly mentioning the ref type it will go to the explicitly one not the autowired one-->
+<!--autowire works only when we don't mention the property explicilty -->
+    </bean>
+
+<!--    <bean id="com1" class="com.Harsh.Laptop">-->
+<!--    </bean>-->
+
+<!--by using the lazy-init we restrict the IoC to make the object of this, the IoC will create object only when I will ask for it.-->
+<!--    <bean class="com.Harsh.Desktop" lazy-init="true">-->
+<!--    </bean>-->
+
+    <!--primary works only when we have confusion if the ref is well/explicitly defined then it will go for the explicit one-->
+    <bean id="com1" class="com.Harsh.Laptop" primary="true">
+    </bean>
+<!-- id is optional, but it has the reason which will be discussed later-->
+</beans>
