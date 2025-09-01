@@ -25,6 +25,8 @@ public class JobService {
 
     //method to get job by id
     public JobPost getJob(int postId) {
+        //only for testing
+//        int num = 10/0;
         return repo.findById(postId).orElse(new JobPost());
     }
 

@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -50,13 +51,15 @@ public class Patient {
     @Enumerated(EnumType.STRING)
     private BloodGroupType bloodGroup;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}) //Merge cascade is used when we are updating smth, while Persist comes under when we save first time.
+//    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}) //Merge cascade is used when we are updating smth, while Persist comes under when we save first time.
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "patient_insurance_id") //this helps to alter the name of column
     //in simple words jidhar @JoinColumn rhega wo side owning side bnn jaega auur whi foreign key laega
     //dono side owning side nai ho skti ek Owning side or ek Inverse side hogi wrna ambiguity aa jaegi jisse hm 2 source of truth keh ske hai
     private Insurance insurance;
 
-    @OneToMany(mappedBy = "patient") //bi directional mapping
-    private List<Appointment> appointments; //inverse side
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.REMOVE}, orphanRemoval = true, fetch = FetchType.EAGER) //bi directional mapping
+//    @ToString.Exclude
+    private List<Appointment> appointments = new ArrayList<>(); //inverse side
 
 }

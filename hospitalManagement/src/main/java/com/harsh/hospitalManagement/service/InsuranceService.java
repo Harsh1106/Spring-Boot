@@ -20,8 +20,16 @@ public class InsuranceService {
         Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new EntityNotFoundException("patient not found: " + patientId));
         patient.setInsurance(insurance);
-        insurance.setPatient(patient); //just to insure that bidirectional mapping consistency maintain
+        insurance.setPatient(patient); //just to ensure that bidirectional mapping consistency maintain
 
+        return patient;
+    }
+
+    @Transactional
+    public Patient disaccociateInsuranceFromPatient(Long patientId){
+        Patient patient = patientRepository.findById(patientId)
+                .orElseThrow(() -> new EntityNotFoundException("patient not found: " + patientId));
+        patient.setInsurance(null);
         return patient;
     }
 }

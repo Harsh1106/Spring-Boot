@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder //this annotation is used to generate constructors
 public class Insurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

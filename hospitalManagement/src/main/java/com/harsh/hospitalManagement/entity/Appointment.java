@@ -18,7 +18,7 @@ public class Appointment {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDateTime appointmentDate;;
+    private LocalDateTime appointmentTime;
 
     @Column(length = 500)
     private String reason;
@@ -26,10 +26,12 @@ public class Appointment {
 //The Many side is always the owning side because the FK lives in the “many” table.
 //Thumb rule: If a table has the FK column, that entity should be the owning side.
     @ManyToOne //owning side
+    @ToString.Exclude
     @JoinColumn(name = "patient_id", nullable = false) //for appointment patient is required that's why it cannot be nullable
     private Patient patient;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //by default fetch type is EAGER in @ManyToOne relationship type
+    @ToString.Exclude
     @JoinColumn(nullable = false)
     private Doctor doctor;
 }
