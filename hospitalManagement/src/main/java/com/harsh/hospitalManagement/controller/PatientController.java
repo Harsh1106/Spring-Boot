@@ -1,4 +1,4 @@
 package com.harsh.hospitalManagement.controller;
 
-public class adminController {
+public class PatientController {
 }
