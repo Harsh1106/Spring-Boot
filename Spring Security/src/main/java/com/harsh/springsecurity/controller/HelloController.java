@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-    @GetMapping("/")
-    public String hello(){
-        return "Go and hit the correct URL bitch!";
-    }
+//    @GetMapping("/")
+//    public String hello(){
+//        return "Go and hit the correct URL bitch!";
+//    }
 
     @GetMapping("/hello")
     public String greet(HttpServletRequest request) {
-        return "Hello World " + request.getSession().getId();
+        return "Hello World";
     }
 
     @GetMapping("/about")

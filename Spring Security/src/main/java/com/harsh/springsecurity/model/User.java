@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 @Table(name="users")
 public class User {
-    private int id;
     @Id
-    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String username;
     private String password;
 }
