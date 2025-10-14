@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String questionTitle;
     private String option1;
@@ -20,6 +20,4 @@ public class Question {
     private String rightAnswer;
     private String difficultylevel;
     private String category;
-
-
 }
